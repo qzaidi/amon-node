@@ -1,10 +1,17 @@
-var amon = require('./lib/amon.js').Amon;
-amon.protocol = 'zeromq'
-amon.host = 'localhost'
-amon.port = 5464
-amon.app_key = 'rfDDiy8sDJWhynxQXV2DXzel2W3KR6P6pFsF5NdOKNI'
+var Amon = require('./lib/amon');
 
-image_dictionary={
+var amon = new Amon({ 
+                           'host'    : 'localhost',
+                           'port': 5464, 
+                           'app_key' : 'rfDDiy8sDJWhynxQXV2DXzel2W3KR6P6pFsF5NdOKNI' }
+                   );
+
+amon.on('error', function(error,data) {
+  // alternative logger
+  console.log(data);
+});
+
+var image_dictionary={
   "Image": {
 	"Width":800,
 	"Height":600,
@@ -17,12 +24,11 @@ image_dictionary={
 	  "Width": 100
 	}
   }
-}
+};
 
-amon.log(image_dictionary, ['Martin','images', 'debug'])
+amon.log(image_dictionary, ['Martin','images', 'debug']);
 
-
-amon.log('zeromq node js log message', 'Martin')
+amon.log('zeromq node js log message', 'Martin');
 
 //amon.log('log message', ['Martin', 'user_data', 'debug'])
 //amon.log('log message', ['John', 'benchmark'])
@@ -37,6 +43,5 @@ try {
   console.log("Error occurred ", error.message);
   amon.handle(error);
 }
-
 
 throw new Error("Test Error 2");

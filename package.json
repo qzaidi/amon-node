@@ -15,7 +15,10 @@
     "main"         : "./lib/amon",
     "engines"      : { "node" : ">=0.4.0" },
     "scripts"      : { "test" : "test/amon-test.js" },
-    "dependencies" : {},
+    "dependencies" : {
+      "request": "latest",
+      "zmq":  "latest"
+    },
     "licenses" : [
     { "type" : "BSD",
         "url"  : "http://github.com/martinrusev/amon-node"
